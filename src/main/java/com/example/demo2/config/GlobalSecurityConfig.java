@@ -25,15 +25,15 @@ public class GlobalSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests((requests) -> requests.requestMatchers(HttpMethod.OPTIONS)
-            .permitAll()
-            .requestMatchers("/api/**")
-            .authenticated()
-            .anyRequest()
-            .permitAll());
+                .authorizeHttpRequests((requests) -> requests.requestMatchers(HttpMethod.OPTIONS)
+                        .permitAll()
+                        .requestMatchers("/api/**")
+                        .authenticated()
+                        .anyRequest()
+                        .permitAll());
 
         http.oauth2ResourceServer((oauth2) -> oauth2
-            .jwt(Customizer.withDefaults())
+                .jwt(Customizer.withDefaults())
         );
 
         return http.build();
